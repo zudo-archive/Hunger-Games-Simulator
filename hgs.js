@@ -47,6 +47,7 @@ let gameSettings = {
 };
 
 let autoSimulate = false;
+let dontSave = false;
 
 /*
     Import and export
@@ -161,7 +162,7 @@ if (sessionStorage.getItem("hgs_game")) {
  */
 
 window.onbeforeunload = function() {
-    if (!sessionStorage.getItem("DEBUG_autosave_disabled")) {
+    if (!sessionStorage.getItem("DEBUG_autosave_disabled") && !dontSave) {
         sessionStorage.setItem("hgs_game", gameExport(gameSettings));
     }
 };
@@ -254,6 +255,13 @@ $(function() {
        $("#game-log").html("");
        gameSettings.log = [];
        updateUI();
+    });
+ 
+    $("#game-reset-hard").click(function() {
+      dontSave = true;
+      gameSettings = {};
+      sessionStorage.removeItem("hgs_game");
+      window.location.reload();
     });
  
     $("#game-edit-tributes").click(function() {
