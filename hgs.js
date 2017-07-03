@@ -215,7 +215,7 @@ function loop() {
             }
         }
 
-        $("#game-log").prepend(`<div class="panel panel-default"><div class="panel-body">${event.message.formatUnicorn(tributesInvolvedText)}</div></div>`);
+        $("#game-log").prepend(`<div class="panel ${fatal ? "panel-danger" : "panel-success"}"><div class="panel-body ${fatal ? "bg-danger" : "bg-success"}">${event.message.formatUnicorn(tributesInvolvedText)}</div></div>`);
 
         console.groupEnd();
     }
