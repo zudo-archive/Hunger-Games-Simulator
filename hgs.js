@@ -258,10 +258,12 @@ $(function() {
     });
  
     $("#game-reset-hard").click(function() {
-      dontSave = true;
-      gameSettings = {};
-      sessionStorage.removeItem("hgs_game");
-      window.location.reload();
+      if (confirm("Are you sure you want to hard reset? All of your custom settings will be lost!")) {
+       dontSave = true;
+       gameSettings = {};
+       sessionStorage.removeItem("hgs_game");
+       window.location.reload();
+      }
     });
  
     $("#game-edit-tributes").click(function() {
