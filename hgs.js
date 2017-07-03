@@ -259,8 +259,15 @@ $(function() {
     $("#game-edit-tributes").click(function() {
       $("#tributes-editor").html("");
       for (let tributeID in gameSettings.tributes) {
-          $("#tributes-editor").append(`<p><input type="text" placeholder="Name" value="${gameSettings.tributes[tributeID].name}"></p>`);
+          $("#tributes-editor").append(`<p><input type="text" placeholder="Name" class="tribute-name" value="${gameSettings.tributes[tributeID].name}" class="form-control" data-tribute="${gameSettings.tributes[tributeID]._uuid"></p>`);
       }
       $("#tributesModal").modal("show");
+    });
+     
+    $("#tributes-submit").click(function() {
+     for (let tributeID in gameSettings.tributes) {
+          gameSettings.tributes[tributeID].name = $(".tribute-name[data-tribute=\"" + gameSettings[tributeID]._uuid + "\"]).val();
+      }
+      $("#tributesModal").modal("hide");
     });
 });
