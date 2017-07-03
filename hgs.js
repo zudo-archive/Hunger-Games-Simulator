@@ -184,10 +184,10 @@ function loop() {
     let fatal = (Math.floor(Math.random()*2) == 1);
 
     if (livingTributes().length == 1) {
-        $("#game-log").prepend(`<div class="panel panel-default"><div class="panel-body"><strong>${livingTributes()[0].name}</strong> is the winner!</div></div>`);
+        $("#game-log").prepend(`<div class="alert alert-info"><strong>${livingTributes()[0].name}</strong> is the winner!</div>`);
         autoSimulate = false;
     } else if (livingTributes().length < 1) {
-        $("#game-log").prepend(`<div class="panel panel-default"><div class="panel-body">The games end with no single winner.</div></div>`);
+        $("#game-log").prepend(`<div class="alert alert-info">The games end with no single winner.</div>`);
         autoSimulate = false;
     } else {
         console.group("Arena Event");
@@ -215,7 +215,7 @@ function loop() {
             }
         }
 
-        $("#game-log").prepend(`<div class="panel ${fatal ? "panel-danger" : "panel-success"}"><div class="panel-body ${fatal ? "bg-danger" : "bg-success"}">${event.message.formatUnicorn(tributesInvolvedText)}</div></div>`);
+        $("#game-log").prepend(`<div class="alert ${fatal ? "alert-danger" : "alert-success"}">${event.message.formatUnicorn(tributesInvolvedText)}</div>`);
 
         console.groupEnd();
     }
