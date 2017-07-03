@@ -269,5 +269,6 @@ $(function() {
           gameSettings.tributes[tributeID].name = $(".tribute-name[data-tribute=\"" + gameSettings.tributes[tributeID]._uuid + "\"]").val();
       }
       $("#tributesModal").modal("hide");
+      updateUI();
     });
 });
