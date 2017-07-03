@@ -119,7 +119,7 @@ function randomTributes(n) {
 
 function getEvent(fatal)  {
     let list = gameSettings.eventTypes[fatal ? "fatal" : "nonFatal"];
-    list = list.filter(e => e.count >=  livingTributes().length);
+    list = list.filter(e => e.count <= livingTributes().length);
     return list[Math.floor(Math.random()*list.length)];
 }
 
