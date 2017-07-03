@@ -7,6 +7,9 @@ let gameSettings = {
     "tributes":[
 
     ],
+    "log":[
+     
+    ],
     "eventTypes":{
         "fatal":[
             /* 1-player (suicide) */
@@ -175,6 +178,11 @@ function updateUI() {
         let tribute = gameSettings.tributes[tributeNum];
         $("#game-tributes").append(`<div class="list-group-item ${tribute.alive ? "list-group-item-success" : "list-group-item-danger"}" id="tribute.${tribute._uuid}">${tribute.name}</div>`);
     }
+ 
+    $("#game-log").html("");
+    for (let logID in gameSettings.log) {
+        $("#game-log").append(gameSettings.log[logID]);
+    }
 }
 
 /*
@@ -185,10 +193,10 @@ function loop() {
     let fatal = (Math.floor(Math.random()*2) == 1);
 
     if (livingTributes().length == 1) {
-        $("#game-log").prepend(`<div class="alert alert-info"><strong>${livingTributes()[0].name}</strong> is the winner!</div>`);
+        gameSettings.log.unshift(`<div class="alert alert-info"><strong>${livingTributes()[0].name}</strong> is the winner!</div>`);
         autoSimulate = false;
     } else if (livingTributes().length < 1) {
-        $("#game-log").prepend(`<div class="alert alert-info">The games end with no single winner.</div>`);
+        gameSettings.log.unshift(`<div class="alert alert-info">The games end with no single winner.</div>`);
         autoSimulate = false;
     } else {
         console.group("Arena Event");
@@ -212,15 +220,15 @@ function loop() {
             }
         }
 
-        $("#game-log").prepend(`<div class="alert ${fatal ? "alert-danger" : "alert-success"}">${event.message.formatUnicorn(tributesInvolvedText)}</div>`);
+        gameSettings.log.unshift(`<div class="alert ${fatal ? "alert-danger" : "alert-success"}">${event.message.formatUnicorn(tributesInvolvedText)}</div>`);
 
         console.groupEnd();
     }
 
-    updateUI();
-
     if (autoSimulate) {
         loop();
+    } else {
+       updateUI();
     }
 }
 
