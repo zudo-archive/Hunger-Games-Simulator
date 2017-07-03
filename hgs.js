@@ -13,7 +13,7 @@ let gameSettings = {
     "eventTypes":{
         "fatal":[
             /* 1-player (suicide) */
-            {"message":"{0} swallows an ancient scroll which contains an ancient bug curse that eats them from the inside outwards.","count":1,"dead":[0]},
+            {"message":"{0} swallows an ancient scroll which contains an ancient bug curse that eats them from the inside outwards.","count":1,"dead":[0]}, // Thanks, Beth!
             {"message":"{0} trips over a cliff edge.","count":1,"dead":[0]},
             {"message":"{0} drinks tainted water and dies.","count":1,"dead":[0]},
             {"message":"{0} switched to Hanzo (was Mercy)","count":1,"dead":[0]},
@@ -254,5 +254,13 @@ $(function() {
        $("#game-log").html("");
        gameSettings.log = [];
        updateUI();
+    });
+ 
+    $("#game-edit-tributes").click(function() {
+      $("#tributes-editor").html("");
+      for (let tributeID in gameSettings.tributes) {
+          $("#tributes-editor").append(`<p><input type="text" placeholder="Name" value="${gameSettings.tributes[tributeID].name}"></p>`);
+      }
+      $("#tributesModal").modal("show");
     });
 });
