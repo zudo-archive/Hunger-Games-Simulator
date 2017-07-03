@@ -249,6 +249,7 @@ $(function() {
            gameSettings.tributes[tributeID].alive = true;
        }
        $("#game-log").html("");
+       gameSettings.log = [];
        updateUI();
     });
 });
