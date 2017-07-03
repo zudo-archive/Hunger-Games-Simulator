@@ -111,9 +111,10 @@ function livingTributes() {
     return gameSettings.tributes.filter(t => t.alive);
 }
 
-function randomTribute() {
+function randomTributes(n) {
     let living = livingTributes();
-    return living[Math.floor(Math.random()*living.length)]
+    let living = living.sort(() => 0.5 - Math.random());
+    return living.slice(0, n)
 }
 
 function getEvent(fatal)  {
@@ -195,12 +196,8 @@ function loop() {
         let event = getEvent(fatal);
 
         console.log(event);
-        let tributesInvolved = [];
+        let tributesInvolved = randomTributes(n);
         let tributesInvolvedText;
-
-        for (let i = 0; i < event.count; i++) {
-            tributesInvolved.push(randomTribute());
-        }
 
         console.log(tributesInvolved);
 
