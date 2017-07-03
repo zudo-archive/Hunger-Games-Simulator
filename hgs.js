@@ -113,7 +113,7 @@ function livingTributes() {
 
 function randomTributes(n) {
     let living = livingTributes();
-    let living = living.sort(() => 0.5 - Math.random());
+    living = living.sort(() => 0.5 - Math.random());
     return living.slice(0, n)
 }
 
