@@ -266,7 +266,7 @@ $(function() {
      
     $("#tributes-submit").click(function() {
      for (let tributeID in gameSettings.tributes) {
-          gameSettings.tributes[tributeID].name = $(".tribute-name[data-tribute=\"" + gameSettings[tributeID]._uuid + "\"]).val();
+          gameSettings.tributes[tributeID].name = $(".tribute-name[data-tribute=\"" + gameSettings[tributeID]._uuid + "\"]").val();
       }
       $("#tributesModal").modal("hide");
     });
