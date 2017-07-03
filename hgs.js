@@ -196,7 +196,7 @@ function loop() {
         let event = getEvent(fatal);
 
         console.log(event);
-        let tributesInvolved = randomTributes(n);
+        let tributesInvolved = randomTributes(event.count);
         let tributesInvolvedText;
 
         console.log(tributesInvolved);
