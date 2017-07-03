@@ -190,6 +190,9 @@ function updateUI() {
  */
 
 function loop() {
+    if (gameSettings.log.length == 0) {
+        gameSettings.log.unshift(`<div class="alert alert-info">Let the games begin!</div>`);
+    }
     let fatal = (Math.floor(Math.random()*2) == 1);
 
     if (livingTributes().length == 1) {
