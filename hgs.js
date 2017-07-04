@@ -87,7 +87,7 @@ String.prototype.formatUnicorn = String.prototype.formatUnicorn ||
 String.prototype.stripHTML = String.prototype.stripHTML ||
   function () {
    let el = document.createElement("div");
-   el.innerText = this;
+   el.innerHTML = this;
    return el.innerText;
   };
 
