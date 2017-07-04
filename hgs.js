@@ -84,12 +84,11 @@ String.prototype.formatUnicorn = String.prototype.formatUnicorn ||
         return str;
     };
 
-String.prototype.stripHTML = String.prototype.stripHTML ||
-  function () {
+function stripHTML(str) {
    let el = document.createElement("div");
-   el.innerHTML = this;
+   el.innerHTML = str;
    return el.innerText;
-  };
+}
 
 /*
     Generator functions
@@ -276,14 +275,17 @@ $(function() {
     $("#game-edit-tributes").click(function() {
       $("#tributes-editor").html("");
       for (let tributeID in gameSettings.tributes) {
-          $("#tributes-editor").append(`<p><input type="text" placeholder="Name" class="form-control tribute-name" value="${gameSettings.tributes[tributeID].name}" data-tribute="${gameSettings.tributes[tributeID]._uuid}"></p>`);
+          $("#tributes-editor").append(`<p><input type="text" class="form-control tribute-name" plaeholder="${gameSettings.tributes[tributeID].name}" data-tribute="${gameSettings.tributes[tributeID]._uuid}"></p>`);
       }
       $("#tributesModal").modal("show");
     });
      
     $("#tributes-submit").click(function() {
      for (let tributeID in gameSettings.tributes) {
-          gameSettings.tributes[tributeID].name = $(".tribute-name[data-tribute=\"" + gameSettings.tributes[tributeID]._uuid + "\"]").val().stripHTML();
+          let newName = stripHTML($(".tribute-name[data-tribute=\"" + gameSettings.tributes[tributeID]._uuid + "\"]").val());
+          if (newName != "") {
+           gameSettings.tributes[tributeID].name = newName;
+          }
       }
       $("#tributesModal").modal("hide");
       updateUI();
