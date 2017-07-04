@@ -84,6 +84,13 @@ String.prototype.formatUnicorn = String.prototype.formatUnicorn ||
         return str;
     };
 
+String.prototype.stripHTML = String.prototype.stripHTML ||
+  function () {
+   let el = document.createElement("div");
+   el.innerText = this;
+   return el.innerText;
+  };
+
 /*
     Generator functions
  */
@@ -276,7 +283,7 @@ $(function() {
      
     $("#tributes-submit").click(function() {
      for (let tributeID in gameSettings.tributes) {
-          gameSettings.tributes[tributeID].name = $(".tribute-name[data-tribute=\"" + gameSettings.tributes[tributeID]._uuid + "\"]").val();
+          gameSettings.tributes[tributeID].name = $(".tribute-name[data-tribute=\"" + gameSettings.tributes[tributeID]._uuid + "\"]").val().stripHTML();
       }
       $("#tributesModal").modal("hide");
       updateUI();
