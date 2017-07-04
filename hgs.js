@@ -140,15 +140,15 @@ function setTributeAlive(uuid, alive) {
  */
 
 function disableAutoSave() {
-    sessionStorage.setItem("DEBUG_autosave_disabled", true);
+    localStorage.setItem("DEBUG_autosave_disabled", true);
 }
 
 /*
     Load game
  */
 
-if (sessionStorage.getItem("hgs_game")) {
-    gameSettings = gameImport(sessionStorage.getItem("hgs_game"));
+if (localStorage.getItem("hgs_game")) {
+    gameSettings = gameImport(localStorage.getItem("hgs_game"));
 } else {
     let male = true;
     for (let i = 0; i < 24; i++) {
@@ -162,8 +162,8 @@ if (sessionStorage.getItem("hgs_game")) {
  */
 
 window.onbeforeunload = function() {
-    if (!sessionStorage.getItem("DEBUG_autosave_disabled") && !dontSave) {
-        sessionStorage.setItem("hgs_game", gameExport(gameSettings));
+    if (!localStorage.getItem("DEBUG_autosave_disabled") && !dontSave) {
+        localStorage.setItem("hgs_game", gameExport(gameSettings));
     }
 };
 
@@ -261,7 +261,7 @@ $(function() {
       if (confirm("Are you sure you want to hard reset? All of your custom settings will be lost!")) {
        dontSave = true;
        gameSettings = {};
-       sessionStorage.removeItem("hgs_game");
+       localStorage.removeItem("hgs_game");
        window.location.reload();
       }
     });
