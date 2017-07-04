@@ -275,7 +275,7 @@ $(function() {
     $("#game-edit-tributes").click(function() {
       $("#tributes-editor").html("");
       for (let tributeID in gameSettings.tributes) {
-          $("#tributes-editor").append(`<p><input type="text" class="form-control tribute-name" plaeholder="${gameSettings.tributes[tributeID].name}" data-tribute="${gameSettings.tributes[tributeID]._uuid}"></p>`);
+          $("#tributes-editor").append(`<p><input type="text" class="form-control tribute-name" placeholder="${gameSettings.tributes[tributeID].name}" data-tribute="${gameSettings.tributes[tributeID]._uuid}"></p>`);
       }
       $("#tributesModal").modal("show");
     });
